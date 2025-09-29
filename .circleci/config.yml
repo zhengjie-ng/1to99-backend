@@ -120,6 +120,7 @@ workflows:
       - publish:
           requires:
             - scan
+            - snyk_sast
           filters:
             branches:
               only: develop
