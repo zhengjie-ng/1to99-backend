@@ -57,7 +57,10 @@ jobs:
     docker:
       - image: cimg/openjdk:17.0
     steps:
-      - checkout
+      - maven_install
+      - run:
+          name: Make Maven wrapper executable
+          command: chmod +x ./mvnw
       - snyk/scan:
           command: code test
           fail-on-issues: false
