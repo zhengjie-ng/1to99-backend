@@ -1,0 +1,39 @@
+  In Container Manager (Docker):
+  1. Upload your project files to /docker/1to99-backend/
+  2. Create project from docker-compose.yml
+  3. Start containers - app will be available on port 8081
+
+  3. Set up Reverse Proxy (recommended):
+
+  Control Panel → Login Portal → Advanced → Reverse Proxy:
+  - Source:
+    - Protocol: HTTPS
+    - Hostname: your-domain.com or your-ddns.synology.me
+    - Port: 443
+  - Destination:
+    - Protocol: HTTP
+    - Hostname: localhost
+    - Port: 8081
+
+  4. External Access Options:
+
+  Option A: QuickConnect (easiest)
+  - DSM → Control Panel → QuickConnect
+  - Enable and get your QuickConnect ID
+  - Access via: http://QuickConnectID.quickconnect.to:8081
+
+  Option B: DDNS + Port Forwarding
+  - Control Panel → External Access → DDNS
+  - Set up yourname.synology.me
+  - Router: Forward port 443 → NAS IP:443
+  - Access via: https://yourname.synology.me
+
+  Option C: Custom Domain
+  - Buy domain, point to your IP
+  - Set up SSL certificate in Synology
+  - Use reverse proxy as above
+
+  5. Security Setup:
+  - Enable firewall in Control Panel → Security
+  - Set up SSL certificates (Let's Encrypt available)
+  - Consider VPN access instead for extra security
