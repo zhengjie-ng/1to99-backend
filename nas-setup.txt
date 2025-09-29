@@ -37,3 +37,5 @@
   - Enable firewall in Control Panel → Security
   - Set up SSL certificates (Let's Encrypt available)
   - Consider VPN access instead for extra security
+
+  Currently is to run Backend and Cloudflare on my Synology Nas, with a purchase domain zhengjie.app
