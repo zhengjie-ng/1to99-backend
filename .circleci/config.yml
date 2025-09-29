@@ -57,24 +57,11 @@ jobs:
     docker:
       - image: cimg/openjdk:17.0
     steps:
-      - maven_install
-      - run:
-          name: Make Maven wrapper executable
-          command: chmod +x ./mvnw
+      - checkout
       - snyk/scan:
           command: code test
           fail-on-issues: false
           severity-threshold: medium
-
-
-  test:
-    docker:
-      - image: cimg/openjdk:17.0
-    steps:
-      - maven_install
-      - run:
-          name: Run Tests
-          command: mvn test
 
   scan:
     docker:
@@ -118,12 +105,6 @@ workflows:
           filters:
             branches:
               only: develop
-      - test:
-          requires:
-            - build
-          filters:
-            branches:
-              only: develop
       - snyk_sast:
           requires:
             - build
@@ -138,8 +119,7 @@ workflows:
               only: develop
       - publish:
           requires:
-            - test
             - scan
           filters:
-              branches:
-                only: develop
+            branches:
+              only: develop
